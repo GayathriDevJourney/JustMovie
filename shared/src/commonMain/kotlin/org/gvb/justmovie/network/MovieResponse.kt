@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MovieResponse(
-    val dates: DatesModel,
+    val dates: DatesModel? = null,
     val page: Int = 0,
     val results: List<Movie> = emptyList(),
     val total_pages: Int = 0,

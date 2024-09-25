@@ -6,8 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import org.gvb.justmovie.getPlatform
 import org.gvb.justmovie.getTileStyle
+import org.gvb.justmovie.network.KtorClient
 import org.gvb.justmovie.network.MovieResponse
 
 @Composable
@@ -36,12 +39,12 @@ fun MovieListScreen(
 ) {
     val jsonData = remember { mutableStateOf<MovieResponse?>(null) }
     LaunchedEffect("") {
-        /*val data = KtorClient().getData()
+        val data = KtorClient().getMovieData()
         println("data $data")
-        jsonData.value = data*/
+        jsonData.value = data
     }
     Column {
-        Text("This is a movie list screen ${getPlatform().name}")
+//        Text("This is a movie list screen ${getPlatform().name}")
         MovieListGrid(jsonData.value, onClick)
     }
 }
@@ -76,8 +79,8 @@ fun MovieListGrid(jsonData: MovieResponse?, onClick: (movie: String) -> Unit) {
                         modifier = Modifier.padding(10.dp)
                     ) {
                         AsyncImage(
-                            modifier = Modifier.size(100.dp),
-                            model = "https://picsum.photos/100/100",
+                            modifier = Modifier.wrapContentSize().clickable { onClick(movie.title) },
+                            model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
                             contentDescription = "Translated description of what the image contains"
                         )
 //                        Text(
