@@ -1,10 +1,4 @@
-{
-  "dates": {
-    "maximum": "2024-10-02",
-    "minimum": "2024-08-21"
-  },
-  "page": 1,
-  "results": [
+[
     {
       "adult": false,
       "backdrop_path": "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg",
@@ -403,7 +397,4 @@
       "vote_average": 6.241,
       "vote_count": 106
     }
-  ],
-  "total_pages": 233,
-  "total_results": 4641
-}
+  ]
